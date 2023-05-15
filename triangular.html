@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Consecutive Triangular Numbers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-image: url("imagen8.jpeg");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    h1 {
+      color: #333;
+      padding: 20px;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 18px;
+      color: black;
+      font-weight: bold
+    };
+
+    input[type="number"] {
+      width: 400px;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #560ed2;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    #result-container {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      background-color: #899cd264;
+    }
+
+    table {
+      width: 50%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      align-items: center;
+      border-radius: 10px;
+    }
+
+    th, td {
+      padding: 10px;
+      border: 1px solid #333;
+    }
+
+    th {
+      background-color: #333;
+      color: #fff;
+    }
+button:hover{
+    background-color: #0b5882;
+}
+
+    #result-container {
+      margin-left: auto;
+      margin-right: auto;
+      width: 70%; /* Adjust the width as desired */
+    }
+
+    /* Set a maximum height and add a scrollbar when needed */
+    #result-container {
+      max-height: 60vh; /* Adjust the maximum height as desired */
+      overflow: auto;
+    }
+    ul.navbar {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #2c95fe;
+    }
+    ul.navbar li {
+      float: right;
+    }
+    ul.navbar li a {
+      display: block;
+      color: black;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      font-family: "sans serif";
+      font-size: 20px;
+    }
+    ul.navbar li a:hover {
+      background-color: hwb(214 67% 21%);
+    }
+
+
+  </style>
+</head>
+<body>
+    <ul class="navbar">
+        <li><a class="active" href="index2.html">Home</a></li>
+        <li><a href="app.html" target="-blank">Gauss Arithmetic Calculator</a></li>
+        <li><a href="app4.html">Geometric Calculator</a></li>
+        <li><a href="triangular.html">Figurate Number Calculator</a></li>
+      </ul>
+
+    <h1>Numeros Triangulares</h1>
+    <div class="container">
+      <label for="num-input">Ingrese la cantidad de Numeros Triangulares:</label>
+      <input type="number" id="num-input">
+      <button id="calculate-btn">Calcular</button>
+      <div id="result-container"></div>
+    </div>  
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const calculateBtn = document.getElementById("calculate-btn");
+      calculateBtn.addEventListener("click", function() {
+        const numInput = document.getElementById("num-input");
+        const num = parseInt(numInput.value);
+
+        if (isNaN(num) || num <= 0) {
+          alert("Please enter a valid positive number.");
+          return;
+        }
+
+        const resultContainer = document.getElementById("result-container");
+        resultContainer.innerHTML = "";
+
+        const table = document.createElement("table");
+        const headerRow = document.createElement("tr");
+        const headerNum = document.createElement("th");
+        const headerValue = document.createElement("th");
+        headerNum.textContent = "Number";
+        headerValue.textContent = "Triangular Number";
+        headerRow.appendChild(headerNum);
+        headerRow.appendChild(headerValue);
+        table.appendChild(headerRow);
+
+        for (let i = 1; i <= num; i++) {
+          const triangularNumber = (i * (i + 1)) / 2;
+          const row = document.createElement("tr");
+          const numberCell = document.createElement("td");
+          const valueCell = document.createElement("td");
+          numberCell.textContent = i;
+          valueCell.textContent = triangularNumber;
+          row.appendChild(numberCell);
+          row.appendChild(valueCell);
+          table.appendChild(row);
+        }
+
+        resultContainer.appendChild(table);
+
+        // Check if the table height exceeds the container height
+        if (table.offsetHeight > resultContainer.offsetHeight) {
+          resultContainer.style.overflowY = "scroll"; // Adds a vertical scrollbar
+        } else {
+          resultContainer.style.overflowY = "auto"; // Removes the scrollbar
+        }
+      });
+    });
+  </script>
+</body>
+</html>
