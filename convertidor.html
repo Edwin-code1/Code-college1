@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Geometric Sequence Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-image: url("imagen8.jpeg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color:black;
+      padding: 5%;
+    }
+
+    .container {
+      margin-top: 50px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 10px;
+      align-self: center;
+      font-size: 25px;
+      color:black;
+    }
+
+    input[type="number"] {
+      width: 300px;
+      padding: 5px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #560ed2;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+      font-size: 30px;
+    }
+
+    .breakdown {
+      display: none;
+      padding-top: 10px;
+      margin-top: 20px;
+      font-size: 80px;
+      text-align: center;
+      color: rgb(21, 113, 194);
+      border: 15PX solid black;
+      background-color: #fff;
+      transform: scale(0.3);
+    }
+
+    ul.navbar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #2794fb;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+  }
+
+  ul.navbar li {
+    float: right;
+  }
+
+  ul.navbar li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    font-family: "sans serif";
+  }
+
+  ul.navbar li a:hover {
+    background-color: #0bb72a;
+  }
+
+  </style>
+</head>
+<body>
+
+    <ul class="navbar">
+        <li><a class="active" href="index2.html">Home</a></li>
+        <li><a href="app.html" target="-blank">Gauss Arithmetic Calculator</a></li>
+        <li><a href="app4.html">Geometric Calculator</a></li>
+        <li><a href="triangular.html">Figurate Number Calculator</a></li>
+      </ul>
+    
+  <h1>Geometric Sequence Calculator</h1>
+  
+  <div class="container">
+    <label for="first-term">First Term:</label>
+    <input type="number" id="first-term">
+
+    <label for="common-ratio">Common Ratio:</label>
+    <input type="number" id="common-ratio">
+
+    <label for="term-position">Term Position:</label>
+    <input type="number" id="term-position">
+
+    <button id="calculate">Calculate</button>
+
+    <div id="result"></div>
+
+    <button id="toggleBreakdown">Show Breakdown</button>
+    <div class="breakdown" id="breakdown"></div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      function calculateTerm() {
+        const firstTerm = parseFloat(document.getElementById("first-term").value);
+        const commonRatio = parseFloat(document.getElementById("common-ratio").value);
+        const termPosition = parseInt(document.getElementById("term-position").value);
+  
+        const term = firstTerm * Math.pow(commonRatio, termPosition - 1);
+  
+        document.getElementById("result").innerHTML = `The term at position ${termPosition} is ${term}.`;
+      }
+  
+      function showBreakdown() {
+        const firstTerm = parseFloat(document.getElementById("first-term").value);
+        const commonRatio = parseFloat(document.getElementById("common-ratio").value);
+        const termPosition = parseInt(document.getElementById("term-position").value);
+  
+        const breakdownText = `a${termPosition} = ${firstTerm} * ${commonRatio}^(${termPosition} - 1)<br>`;
+        const result = firstTerm * Math.pow(commonRatio, termPosition - 1);
+  
+        document.getElementById("breakdown").innerHTML = `${breakdownText}a${termPosition} = ${result}`;
+      }
+  
+      document.getElementById("calculate").addEventListener("click", calculateTerm);
+  
+      const toggleButton = document.getElementById("toggleBreakdown");
+      toggleButton.addEventListener("click", function() {
+        const breakdownElement = document.getElementById("breakdown");
+        breakdownElement.style.display = (breakdownElement.style.display === "none") ? "block" : "none";
+      });
+  
+      toggleButton.addEventListener("click", showBreakdown);
+    });
+  </script>
+  
+  
